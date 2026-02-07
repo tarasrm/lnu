@@ -37,20 +37,7 @@
   margin-bottom: 15px;
 }
 
-.week-info {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.week-info .current-week {
-  font-size: 0.9em;
-  font-weight: bold;
-  color: var(--text-white);
-}
-
-.timetable {
+.schedule {
   padding: 10px 15px 5px 15px;
 }
 
@@ -117,6 +104,21 @@
   margin-bottom: 10px;
 }
 
+.mobile-slot-halves {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mobile-slot-half {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
 .mobile-time-header {
   background: var(--mobile-nav-bg);
   color: var(--text-white);
@@ -177,6 +179,16 @@
   color: #fe9339;
 }
 
+.type-pill--practice {
+  background: #ffe8cc;
+  color: #fe9339;
+}
+
+.type-pill--lab {
+  background: #d5b7f8;
+  color: #4a148c;
+}
+
 .mobile-lecture.other-week .type-pill {
   background: var(--primary-bg);
   color: var(--other-week-bg);
@@ -192,7 +204,7 @@
 }
 
 @media (max-width: 480px) {
-  .timetable {
+  .schedule {
     padding: 10px;
   }
   .mobile-day-nav {

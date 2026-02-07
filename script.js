@@ -1,5 +1,5 @@
-// Timetable data for group ЕКПМ-11с
-const timetableData = {
+// Schedule data for group ЕКПМ-11с
+const scheduleData = {
     groupName: "ЕКПМ-11с",
     timeSlots: [
         { number: 6, start: "16:40", end: "18:00" },
@@ -245,14 +245,14 @@ function createLectureElement(lecture, isCurrentWeek) {
     return div;
 }
 
-// Function to render the timetable
-function renderTimetable() {
-    const timetable = document.getElementById('timetable');
+// Function to render the schedule
+function renderSchedule() {
+    const schedule = document.getElementById('schedule');
     const currentWeekType = getCurrentWeekType();
     const currentWeek = getCurrentWeek();
     
     // Clear existing content to prevent duplicates
-    timetable.innerHTML = '';
+    schedule.innerHTML = '';
     
     // Update week info
     const weekTypeText = currentWeekType === 1 ? 'чисельник' : 'знаменник';
@@ -285,10 +285,10 @@ function renderTimetable() {
         headerRow.appendChild(dayHeader);
     });
     
-    timetable.appendChild(headerRow);
+    schedule.appendChild(headerRow);
     
     // Create rows for each time slot
-    timetableData.timeSlots.forEach(timeSlot => {
+    scheduleData.timeSlots.forEach(timeSlot => {
         const row = document.createElement('div');
         row.style.display = 'contents';
         
@@ -308,15 +308,15 @@ function renderTimetable() {
             const cell = document.createElement('div');
             cell.className = 'lecture-cell';
             
-            let dayLectures = timetableData.schedule[dayKey] || [];
+            let dayLectures = scheduleData.schedule[dayKey] || [];
             
             // Check for additional schedule items on Thursday
-            if (dayKey === 'thursday' && timetableData.additionalSchedule && timetableData.additionalSchedule.thursday) {
+            if (dayKey === 'thursday' && scheduleData.additionalSchedule && scheduleData.additionalSchedule.thursday) {
                 const thursdayDate = weekDates[dayIndex]; // Thursday is at index 3
                 const thursdayDateStr = formatDateFull(thursdayDate);
                 
                 // Filter additional schedule items that match this Thursday's date
-                const additionalLectures = timetableData.additionalSchedule.thursday.filter(lecture => 
+                const additionalLectures = scheduleData.additionalSchedule.thursday.filter(lecture => 
                     lecture.date === thursdayDateStr
                 );
                 
@@ -354,7 +354,7 @@ function renderTimetable() {
             row.appendChild(cell);
         });
         
-        timetable.appendChild(row);
+        schedule.appendChild(row);
     });
 }
 
@@ -415,16 +415,16 @@ function renderMobileDayView(dayIndex) {
     mobileDayView.innerHTML = '';
     
     const dayKey = dayKeys[dayIndex];
-    let dayLectures = timetableData.schedule[dayKey] || [];
+    let dayLectures = scheduleData.schedule[dayKey] || [];
     let additionalLectures = [];
     
     // Check for additional schedule items on Thursday
-    if (dayKey === 'thursday' && timetableData.additionalSchedule && timetableData.additionalSchedule.thursday) {
+    if (dayKey === 'thursday' && scheduleData.additionalSchedule && scheduleData.additionalSchedule.thursday) {
         const thursdayDate = weekDates[dayIndex];
         const thursdayDateStr = formatDateFull(thursdayDate);
         
         // Filter additional schedule items that match this Thursday's date
-        additionalLectures = timetableData.additionalSchedule.thursday.filter(lecture => 
+        additionalLectures = scheduleData.additionalSchedule.thursday.filter(lecture => 
             lecture.date === thursdayDateStr
         );
         
@@ -458,7 +458,7 @@ function renderMobileDayView(dayIndex) {
     });
     
     // Create time slots
-    timetableData.timeSlots.forEach(timeSlot => {
+    scheduleData.timeSlots.forEach(timeSlot => {
         const lecturesForThisTime = lecturesByTime[timeSlot.number] || [];
         
         if (lecturesForThisTime.length > 0) {
@@ -548,7 +548,7 @@ function handleSwipe() {
 function renderAppropriateView() {
     if (isMobile()) {
         // Show mobile view
-        document.getElementById('timetable').style.display = 'none';
+        document.getElementById('schedule').style.display = 'none';
         document.getElementById('mobileDayNav').style.display = 'flex';
         document.getElementById('mobileDayView').style.display = 'block';
         
@@ -564,17 +564,17 @@ function renderAppropriateView() {
         handleSwipe();
     } else {
         // Show desktop view
-        document.getElementById('timetable').style.display = 'grid';
+        document.getElementById('schedule').style.display = 'grid';
         document.getElementById('mobileDayNav').style.display = 'none';
         document.getElementById('mobileDayView').style.display = 'none';
-        renderTimetable();
+        renderSchedule();
     }
 }
 
 // Flag to prevent multiple initializations
 let isInitialized = false;
 
-// Initialize the timetable when the page loads
+// Initialize the schedule when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     if (!isInitialized) {
         renderAppropriateView();
@@ -587,11 +587,11 @@ window.addEventListener('resize', function() {
     renderAppropriateView();
 });
 
-// Update timetable every hour to handle week changes
+// Update schedule every hour to handle week changes
 setInterval(function() {
     if (isMobile()) {
         renderMobileDayView(currentDayIndex);
     } else {
-        renderTimetable();
+        renderSchedule();
     }
 }, 60 * 60 * 1000);

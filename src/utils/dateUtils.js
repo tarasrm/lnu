@@ -1,3 +1,7 @@
+// Semester starts 09.02.2026; that week is week 1 and type 2 (знаменник).
+const SEMESTER_START = new Date(2026, 1, 9); // 09.02.2026 (Monday)
+SEMESTER_START.setHours(0, 0, 0, 0);
+
 // Returns the reference date: weekdays = today, weekends = next Monday
 export function getReferenceDate() {
   const today = new Date();
@@ -15,43 +19,43 @@ export function getReferenceDate() {
   return today;
 }
 
-export function getCurrentWeek() {
-  const september1 = new Date(new Date().getFullYear(), 8, 1);
-  const referenceDate = getReferenceDate();
-  if (referenceDate < september1) {
-    september1.setFullYear(september1.getFullYear() - 1);
-  }
-  const timeDiff = referenceDate.getTime() - september1.getTime();
-  const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-  return Math.floor(daysDiff / 7) + 1;
+// Monday of the week containing date (getDay: 0=Sun, 1=Mon, ..., 6=Sat)
+function getMondayOfWeek(date) {
+  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const day = d.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + diff);
+  return d;
 }
 
+// Calendar days between two dates (date-only, no time/DST issues)
+function calendarDaysBetween(a, b) {
+  const toNoon = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate(), 12, 0, 0, 0);
+  const msPerDay = 1000 * 60 * 60 * 24;
+  return Math.round((toNoon(b).getTime() - toNoon(a).getTime()) / msPerDay);
+}
+
+export function getCurrentWeek() {
+  const ref = getReferenceDate();
+  const monday = getMondayOfWeek(ref);
+  const days = calendarDaysBetween(SEMESTER_START, monday);
+  if (days < 0) return 1;
+  return Math.floor(days / 7) + 1;
+}
+
+// Week 1 (09.02.2026) = type 2, week 2 = type 1, week 3 = type 2, ...
 export function getCurrentWeekType() {
-  return getCurrentWeek() % 2 === 1 ? 1 : 2;
+  const week = getCurrentWeek();
+  return week % 2 === 1 ? 2 : 1;
 }
 
 export function getCurrentWeekDates() {
-  const referenceDate = getReferenceDate();
-  const september1 = new Date(new Date().getFullYear(), 8, 1);
-  if (referenceDate < september1) {
-    september1.setFullYear(september1.getFullYear() - 1);
-  }
-  const timeDiff = referenceDate.getTime() - september1.getTime();
-  const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-  const weeksPassed = Math.floor(daysDiff / 7);
-  const mondayOfWeek = new Date(september1);
-  mondayOfWeek.setDate(september1.getDate() + weeksPassed * 7);
-  const dayOfWeek = mondayOfWeek.getDay();
-  const daysToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-  mondayOfWeek.setDate(mondayOfWeek.getDate() + daysToMonday);
-  const todayDayOfWeek = referenceDate.getDay();
-  if (todayDayOfWeek === 0 || todayDayOfWeek === 6) {
-    mondayOfWeek.setDate(mondayOfWeek.getDate() + 7);
-  }
+  const ref = getReferenceDate();
+  const monday = getMondayOfWeek(ref);
   const weekDates = [];
   for (let i = 0; i < 5; i++) {
-    const date = new Date(mondayOfWeek);
-    date.setDate(mondayOfWeek.getDate() + i);
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + i);
     weekDates.push(date);
   }
   return weekDates;

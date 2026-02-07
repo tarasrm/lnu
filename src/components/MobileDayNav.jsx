@@ -1,4 +1,4 @@
-import { dayNames } from "../data/timetableData";
+import { dayNames } from "../data/scheduleData";
 import { getCurrentWeekDates, formatDate } from "../utils/dateUtils";
 import { MobileDayView } from "./MobileDayView";
 

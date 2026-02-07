@@ -67,7 +67,7 @@ body {
     color: var(--text-white);
 }
 
-.timetable {
+.schedule {
     padding: 10px 15px 5px 15px;
 }
 
@@ -371,11 +371,11 @@ body {
         display: none;
     }
     
-    .timetable {
+    .schedule {
         padding: 15px;
     }
     
-    /* Hide desktop timetable on mobile */
+    /* Hide desktop schedule on mobile */
     .time-slots {
         display: none;
     }
@@ -418,7 +418,7 @@ body {
     }
     
     
-    .timetable {
+    .schedule {
         padding: 10px;
     }
     

@@ -1,6 +1,6 @@
-# lnu-time-table
+# lnu-schedule
 
-Mobile-first React timetable for group ЕКПМ-11с: day-by-day view with swipe. Optimized for phones; works in any browser (e.g. on GitHub Pages).
+Mobile-first React schedule for group ЕКПМ-11с: day-by-day view with swipe. Optimized for phones; works in any browser (e.g. on GitHub Pages).
 
 ## Run locally
 
@@ -20,7 +20,7 @@ npm run dev -- --open
 The app is a **web app**: you host it on GitHub Pages and open the link on your phone in Safari or Chrome. No app store.
 
 1. **Set the correct base path**  
-   In `vite.config.js`, set `base` to your repo name (e.g. `'/lnu-time-table/'` for `https://<username>.github.io/lnu-time-table/`).
+   In `vite.config.js`, set `base` to your repo name (e.g. `'/lnu-schedule/'` for `https://<username>.github.io/lnu-schedule/`).
 
 2. **Build for GitHub Pages**
    ```bash
@@ -39,12 +39,12 @@ The app is a **web app**: you host it on GitHub Pages and open the link on your 
      Then in the repo **Settings → Pages** set source to the `gh-pages` branch.
 
 4. **Open on mobile**  
-   Visit `https://<username>.github.io/<repo-name>/` in your phone’s browser. You can add the page to the home screen for quick access.
+   Visit `https://<username>.github.io/<repo-name>/` (e.g. `https://<username>.github.io/lnu-schedule/`) in your phone’s browser. You can add the page to the home screen for quick access.
 
 ## Project structure
 
 - `src/App.jsx` – root, day index state, swipe
 - `src/components/` – Header, MobileDayNav, MobileDayView, LectureCard
-- `src/data/timetableData.js` – schedule and day labels
+- `src/data/scheduleData.js` – schedule data and day labels
 - `src/utils/` – dateUtils, formatUtils
 - `index.html` – Vite entry

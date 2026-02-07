@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/guide/static-deploy.html#github-pages
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GITHUB_PAGES === 'true' ? '/lnu-time-table/' : '/',
+  base: process.env.GITHUB_PAGES === 'true' ? '/lnu-schedule/' : '/',
 })

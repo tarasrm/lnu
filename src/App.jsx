@@ -52,7 +52,7 @@ export default function App() {
   return (
     <div className="container">
       <Header />
-      <div className="timetable">
+      <div className="schedule">
         <MobileDayNav
           dayIndex={dayIndex}
           onPrev={goPrev}
