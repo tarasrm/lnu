@@ -32,9 +32,9 @@
 }
 
 .header .group-name {
-  font-size: 1.3em;
+  font-size: 1.2em;
   opacity: 0.9;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 .schedule {
