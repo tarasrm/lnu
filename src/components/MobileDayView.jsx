@@ -34,7 +34,7 @@ export function MobileDayView({ dayIndex }) {
   return (
     <div className="mobile-day-view">
       {dayLectures.length === 0 ? (
-        <div className="mobile-no-lectures">Нема занять</div>
+        <div className="mobile-no-lectures">Нема пар</div>
       ) : (
         scheduleData.timeSlots.map((timeSlot) => {
           const lecturesForThisTime = lecturesByTime[timeSlot.number] || [];

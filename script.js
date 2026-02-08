@@ -330,7 +330,7 @@ function renderSchedule() {
             
             if (lecturesForThisTime.length === 0) {
                 cell.className = 'lecture-cell empty-cell';
-                cell.textContent = 'Нема занять';
+                cell.textContent = 'Нема пар';
             } else {
                 lecturesForThisTime.forEach(lecture => {
                     let isCurrentWeek = false;
@@ -443,7 +443,7 @@ function renderMobileDayView(dayIndex) {
     if (dayLectures.length === 0) {
         const noLecturesDiv = document.createElement('div');
         noLecturesDiv.className = 'mobile-no-lectures';
-        noLecturesDiv.textContent = 'Нема занять';
+        noLecturesDiv.textContent = 'Нема пар';
         mobileDayView.appendChild(noLecturesDiv);
         return;
     }
