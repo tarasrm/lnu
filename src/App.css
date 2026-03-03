@@ -96,18 +96,18 @@
 }
 
 .mobile-time-slot {
-  background: white;
+  /* background: white;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 8px;
 }
 
 .mobile-slot-halves {
   display: flex;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 5px;
   margin-bottom: 8px;
 }
 
@@ -127,7 +127,7 @@
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   font-size: 1em;
   display: flex;
   justify-content: space-between;

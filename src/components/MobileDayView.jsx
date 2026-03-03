@@ -38,12 +38,14 @@ export function MobileDayView({ dayIndex }) {
       ) : (
         scheduleData.timeSlots.map((timeSlot) => {
           const lecturesForThisTime = lecturesByTime[timeSlot.number] || [];
-          if (lecturesForThisTime.length === 0) return null;
+          // Keep only lectures that are active for the current week
+          const activeLecturesForThisTime = lecturesForThisTime.filter(isCurrentWeek);
+          if (activeLecturesForThisTime.length === 0) return null;
 
           // Group lectures by weekType within this time slot so ordering
           // is correct even when some items are half-width (subgroups).
           const byWeekType = {};
-          lecturesForThisTime.forEach((lecture) => {
+          activeLecturesForThisTime.forEach((lecture) => {
             const key = lecture.weekType === "every" ? "every" : String(lecture.weekType);
             if (!byWeekType[key]) byWeekType[key] = [];
             byWeekType[key].push(lecture);
