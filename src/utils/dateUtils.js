@@ -1,5 +1,4 @@
-// Semester starts 09.02.2026; that week is week 1 and type 2 (знаменник).
-const SEMESTER_START = new Date(2026, 1, 9); // 09.02.2026 (Monday)
+const SEMESTER_START = new Date(2026, 8, 1); // 01.09.2026 (Tuesday)
 SEMESTER_START.setHours(0, 0, 0, 0);
 
 // Returns the reference date: weekdays = today, weekends = next Monday
