@@ -1,4 +1,5 @@
-const SEMESTER_START = new Date(2026, 8, 1); // 01.09.2026 (Tuesday)
+// 01.09.2026 (Tuesday). That calendar week is week 1 and type 1.
+const SEMESTER_START = new Date(2026, 8, 1);
 SEMESTER_START.setHours(0, 0, 0, 0);
 
 // Returns the reference date: weekdays = today, weekends = next Monday
@@ -37,15 +38,14 @@ function calendarDaysBetween(a, b) {
 export function getCurrentWeek() {
   const ref = getReferenceDate();
   const monday = getMondayOfWeek(ref);
-  const days = calendarDaysBetween(SEMESTER_START, monday);
+  const semesterMonday = getMondayOfWeek(SEMESTER_START);
+  const days = calendarDaysBetween(semesterMonday, monday);
   if (days < 0) return 1;
   return Math.floor(days / 7) + 1;
 }
 
-// Week 1 (09.02.2026) = type 2, week 2 = type 1, week 3 = type 2, ...
 export function getCurrentWeekType() {
-  const week = getCurrentWeek();
-  return week % 2 === 1 ? 2 : 1;
+  return getCurrentWeek() % 2 === 1 ? 1 : 2;
 }
 
 export function getCurrentWeekDates() {
