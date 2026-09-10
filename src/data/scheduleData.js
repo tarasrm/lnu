@@ -74,7 +74,7 @@ export const scheduleData = {
         title: "Корпоративне управління",
         teacher: "доц. Демко І.І.",
         type: "сем.",
-        room: "ауд.Ч336",
+        room: "ауд.105",
       },
     ],
     thursday: [],
